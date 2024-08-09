@@ -1,10 +1,25 @@
+# nota do autor
+
+# forte ênfase nos comentários de código foi dada por mim nesse projeto, tanto a fins
+# de visar a manutenibilidade e as boas práticas, quanto por fins de capricho e gosto pessoal.
+
+# por mais que uma "modularização" em diferentes arquivos seria um padrão de projeto preferível,
+# uma ambiguidade -- ou arguivelmente uma incapacidade da minha parte de compreender com clareza
+# o enunciado do projeto -- na descrição do trabalho deu a mim o entendimento que um arquivo fonte
+# unitário seria usado para testes que determinariam a avaliação daquele, e portanto decidi
+# por assim fazê-lo. 
+
 # em python, usamos snake_case.
-# durante o código, aspas duplas "" serão usadas para output e input, 
+# durante o código, aspas duplas "" serão usadas para outputs e inputs, 
 # e aspas simples '' para definições e manipulações de tipos quaisquer.
+
+
+
+# INÍCIO DO TRABALHO
 
 import os # pra uso de comandos no terminal em funções diversas->(?)
 
-def mostra_titulo():
+def mostra_titulo():  # função pra mostar o título (e uma "assinatura") da aplicação.
   print(""" 
         
                                     
@@ -28,7 +43,7 @@ def mostra_titulo():
                                 ░█ █▄█ █▀█
 """)
   
-def mostra_menu():
+def mostra_menu():  # função que mostra ao usuário as funcionalidades disponíveis no programa.
    print("""  
 
               
@@ -59,8 +74,18 @@ def mostra_menu():
     16. Fecho transitivo
     """)
 
-def recebe_grafo():
-   grafo = input("\n\nDigite o grafo a manipular: ")
+def recebe_grafo(): # criador do grafo. cria um dicionário "grafo" e passa a ele todos os dados do objeto.
+   n_vertices, n_arestas = map(int, input("Digite a qtd de vértices e arestas: ").split())  # separa a entrada em 2 info diferentes.
+   direcionado = True if input("O grafo é ou não direcionado? ") == 'direcionado' else False
+   # direcionado = inp... provavelmente fazia o mesmo. mas assim fica mais legível.
+   grafo = {i: [] for i in range(n_vertices)}  # para cada vértice no grafo criamos uma nova chave
+   
+   for _ in range(n_arestas): # vamos pegar os dados para cada aresta
+        id_aresta, u, v, peso = map(int, input("Digite o id_aresta, u, v, e peso: ").split())   # NECESSARIAMENTE respeitar a ordem numérica (0, 1...)
+        grafo[u].append((v, peso, id_aresta)) # na chave do vértice u ("pirncipal") adicionamos os valores do vértice com o qual ele se liga, a aresta que possibilita isso e o peso dessa.
+        if not direcionado: # caso o grafo não seja direcionado, criamos uma relação bidirecional.
+            grafo[v].append((u, peso, id_aresta))   
+            
    mostra_menu()
 
 def finaliza_programa():
@@ -125,9 +150,8 @@ def pega_opcao():
         opcao_escolhida = int(input("Escolha uma opção: "))
     except ValueError:
         print("\n\nPor favor insira um número inteiro.")   # tratando inputs inválidos (char, string, float, etc.)
-        volta_menu = input("Digite uma tecla pra voltar ao menu principal. ")
-        if volta_menu:
-           main()
+        input("Digite uma tecla pra voltar ao menu principal. ")
+        return
 
     match opcao_escolhida:
        case 0: finaliza_programa()
@@ -155,7 +179,7 @@ def interface():
     pega_opcao()
 
 def main():
-    interface()
+   interface()
 
 if __name__ == "__main__":
    main()
