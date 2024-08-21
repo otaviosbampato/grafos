@@ -3,7 +3,7 @@ Trabalho de Grafos para a disciplina GCC218 - Algoritmos em Grafos, da Universid
 
 ### Nota: Somente considerar main.py
 
-O programa é capaz de realizar 16 funções, além de estar extensivamente comentado.
+O programa é capaz de realizar 15 funções, além de estar extensivamente comentado.
 
 É de valor também notar que a experiência serviu a mim como oportunidade de 
 consolidar os meus conhecimentos em Grafos e em Python.
