@@ -10,8 +10,6 @@
 # por assim fazê-lo. 
 
 # em python, usamos snake_case.
-# durante o código, aspas duplas "" serão usadas para outputs e inputs, 
-# e aspas simples '' para definições e manipulações de tipos quaisquer.
 
 
 # INÍCIO DO TRABALHO
